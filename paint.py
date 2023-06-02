@@ -49,10 +49,6 @@ def comando(instruccion):
         if len(partes) >= 8:
             x1, y1, x2, y2, x3, y3 = map(int, partes[2:8])
             lineas.triangulo(surface, color, x1, y1, x2, y2, x3, y3)
-    elif len(partes) > 0 and partes[0] == "equilatero":
-        if len(partes) >= 6:
-            centro_x, centro_y, lado = map(int, partes[2:6])
-            lineas.equilatero(surface, color, centro_x, centro_y, lado)
     elif partes[0] == "cuadrado":
         x, y, lado = map(int, partes[1:])
         lineas.cuadrado(surface, color, x, y, lado)
@@ -62,7 +58,14 @@ def comando(instruccion):
     elif partes[0] == "rectangulo":
         x,y,b,a = map(int, partes[1:])
         lineas.rectangulo(surface,color,x,y,b,a)
-
+    elif partes[0] == "equilatero":
+        if partes[1] == "=":
+            centro_x, centro_y, lado = map(int, partes[2:6])
+            lineas.equilatero(surface, color, centro_x, centro_y, lado)
+    elif len(partes) > 0 and partes[0] == "isosceles":
+        if partes[1] == "=":
+            x1, y1, base, altura = map(int, partes[2:6])
+            lineas.isoceles(surface, color, x1, y1, base, altura)
 # Establecer el color de fondo inicial
 surface.fill(color_fondo)
 pygame.display.flip()
