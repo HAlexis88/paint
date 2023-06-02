@@ -23,18 +23,35 @@ def triangulo(surface, color, x1, y1, x2, y2, x3, y3):
     linea(surface, color, x3, y3, x1, y1)
     pygame.display.flip()
 
-def equilatero(surface, centro_x, centro_y, lado, color):
-    altura = lado * 0.866  # Calcula la altura del triángulo equilátero
-    x1 = centro_x - lado // 2
-    y1 = centro_y + altura // 3
-    x2 = centro_x
-    y2 = centro_y - (2 * altura) // 3
-    x3 = centro_x + lado // 2
-    y3 = centro_y + altura // 3
+def equilatero(surface, color, center_x, center_y, lado):
+    """Dibuja un triángulo equilátero"""
+    altura = int((3**0.5) / 2 * lado)
+
+    x1 = center_x - lado // 2
+    y1 = center_y + altura // 3
+
+    x2 = center_x
+    y2 = center_y - (2 * altura) // 3
+
+    x3 = center_x + lado // 2
+    y3 = center_y + altura // 3
 
     linea(surface, color, x1, y1, x2, y2)
     linea(surface, color, x2, y2, x3, y3)
     linea(surface, color, x3, y3, x1, y1)
+
+    pygame.display.flip()
+
+def isoceles(surface, color, x1, y1, base, altura):
+    x2 = x1 + base // 2
+    x3 = x1 + base
+    y2 = y1 + altura
+    y3 = y1
+
+    linea(surface, color, x1, y1, x2, y2)
+    linea(surface, color, x2, y2, x3, y3)
+    linea(surface, color, x3, y3, x1, y1)
+
     pygame.display.flip()
 
 def cuadrado(surface, color,lado, x, y):
@@ -75,12 +92,12 @@ def rectangulo(surface, color, x, y, ancho, alto):
     x2 = x + ancho
     y2 = y + alto
 
-    # Dibuja las líneas horizontales
+
     for i in range(x, x2 + 1):
         surface.set_at((i, y), color)
         surface.set_at((i, y2), color)
 
-    # Dibuja las líneas verticales
+
     for i in range(y, y2 + 1):
         surface.set_at((x, i), color)
         surface.set_at((x2, i), color)
