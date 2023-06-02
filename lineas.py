@@ -1,3 +1,5 @@
+#pylint: disable = C0103
+#pylint: disable = E1101
 import pygame
 def linea(surface, color, x1, y1, x2, y2):
     dx = abs(x2 - x1)
